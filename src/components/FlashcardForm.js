@@ -1,4 +1,3 @@
-// FlashcardForm.js
 import React, { useState } from 'react';
 
 const FlashcardForm = ({ onAddFlashcard }) => {
@@ -8,32 +7,57 @@ const FlashcardForm = ({ onAddFlashcard }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!question || !answer) return;
-
     onAddFlashcard(question, answer);
     setQuestion('');
     setAnswer('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6 flex flex-col items-center">
-      <input
-        type="text"
-        placeholder="Question"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        className="p-2 border rounded mb-2 w-64"
-      />
-      <input
-        type="text"
-        placeholder="Answer"
-        value={answer}
-        onChange={(e) => setAnswer(e.target.value)}
-        className="p-2 border rounded mb-2 w-64"
-      />
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-        Add Flashcard
-      </button>
-    </form>
+    <div style={{ marginBottom: '20px' }}>
+      <h2 style={{ fontSize: '24px', marginBottom: '10px', color: '#333' }}>Create Manual Flashcard</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Question"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '10px',
+            borderRadius: '5px',
+            border: '1px solid #ccc'
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Answer"
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '10px',
+            borderRadius: '5px',
+            border: '1px solid #ccc'
+          }}
+        />
+        <button 
+          type="submit" 
+          style={{
+            width: '100%',
+            padding: '10px',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+        >
+          Add Flashcard
+        </button>
+      </form>
+    </div>
   );
 };
 

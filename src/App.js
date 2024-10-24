@@ -11,6 +11,18 @@ function App() {
     setFlashcards((prevCards) => [...prevCards, { question, answer }]);
   };
 
+  const deleteCard = (index) => {
+    setFlashcards((prevCards) => prevCards.filter((_, i) => i !== index));
+    if (currentIndex >= flashcards.length - 1) {
+      setCurrentIndex(Math.max(0, flashcards.length - 2));
+    }
+  };
+
+  const deleteAllCards = () => {
+    setFlashcards([]);
+    setCurrentIndex(0);
+  };
+
   const nextCard = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
   };
@@ -22,30 +34,69 @@ function App() {
   };
 
   return (
-    <div className="App flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-6">Flashcards App</h1>
-      <FlashcardForm onAddFlashcard={addFlashcard} />
+    <div className="container">
+      <h1 style={{ fontSize: '32px', marginBottom: '20px', textAlign: 'center', color: '#333' }}>Flashcards App</h1>
       <AIGenerator onAddFlashcard={addFlashcard} />
-      <div className="flex items-center mt-4">
-        <button
-          onClick={prevCard}
-          className="bg-blue-500 text-white p-4 rounded-l-md transition-all duration-300 hover:bg-blue-600"
-          disabled={flashcards.length === 0}
-        >
-          Previous
-        </button>
+      <FlashcardForm onAddFlashcard={addFlashcard} />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
         <FlashcardDisplay
           flashcards={flashcards}
           currentIndex={currentIndex}
+          onDelete={deleteCard}
         />
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <button
+            onClick={prevCard}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#4CAF50',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              marginRight: '10px',
+              cursor: 'pointer',
+              opacity: flashcards.length === 0 ? 0.5 : 1
+            }}
+            disabled={flashcards.length === 0}
+          >
+            Previous
+          </button>
+          <button
+            onClick={nextCard}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#4CAF50',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              opacity: flashcards.length === 0 ? 0.5 : 1
+            }}
+            disabled={flashcards.length === 0}
+          >
+            Next
+          </button>
+        </div>
         <button
-          onClick={nextCard}
-          className="bg-blue-500 text-white p-4 rounded-r-md transition-all duration-300 hover:bg-blue-600"
+          onClick={deleteAllCards}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#f44336',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            marginTop: '20px',
+            cursor: 'pointer',
+            opacity: flashcards.length === 0 ? 0.5 : 1
+          }}
           disabled={flashcards.length === 0}
         >
-          Next
+          Delete All Cards
         </button>
       </div>
+      <p style={{ textAlign: 'center', marginTop: '20px', color: '#666' }}>
+        {flashcards.length > 0 ? `Card ${currentIndex + 1} of ${flashcards.length}` : 'No flashcards yet'}
+      </p>
     </div>
   );
 }
