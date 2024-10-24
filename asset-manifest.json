@@ -1,15 +1,12 @@
 {
   "files": {
-    "main.css": "/ai-flashcard-maker/static/css/main.e3f12f7f.css",
-    "main.js": "/ai-flashcard-maker/static/js/main.456cba9a.js",
+    "main.js": "/ai-flashcard-maker/static/js/main.bcac6b2c.js",
     "static/js/453.27309c4d.chunk.js": "/ai-flashcard-maker/static/js/453.27309c4d.chunk.js",
     "index.html": "/ai-flashcard-maker/index.html",
-    "main.e3f12f7f.css.map": "/ai-flashcard-maker/static/css/main.e3f12f7f.css.map",
-    "main.456cba9a.js.map": "/ai-flashcard-maker/static/js/main.456cba9a.js.map",
+    "main.bcac6b2c.js.map": "/ai-flashcard-maker/static/js/main.bcac6b2c.js.map",
     "453.27309c4d.chunk.js.map": "/ai-flashcard-maker/static/js/453.27309c4d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3f12f7f.css",
-    "static/js/main.456cba9a.js"
+    "static/js/main.bcac6b2c.js"
   ]
 }
